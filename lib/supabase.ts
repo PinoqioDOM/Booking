@@ -1,6 +1,12 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://YOUR_PROJECT_ID.supabase.co'
-const supabaseKey = 'YOUR_PUBLIC_ANON_KEY'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://nrjgenpmetwqdqxcuigd.supabase.co'
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+if (!supabaseKey) {
+  throw new Error('Missing Supabase key')
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey)
+
+export default supabase
