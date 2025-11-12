@@ -1,63 +1,87 @@
-import Image from "next/image";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from '@/components/ui/navigation-menu';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex min-h-screen flex-col">
+      {/* Header with Navigation */}
+      <header className="border-b">
+        <div className="container mx-auto px-4 py-4">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Cars</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <NavigationMenuLink href="/docs">
+                      <div className="font-medium">Jeep</div>
+                      <div className="text-muted-foreground text-sm">
+                        Conquer Any Terrain, Command Every Adventure
+                      </div>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="/docs/installation">
+                      <div className="font-medium">Sedans</div>
+                      <div className="text-muted-foreground text-sm">
+                        Elegance Meets Comfort On Every Journey
+                      </div>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="/docs/installation">
+                      <div className="font-medium">Sports Cars</div>
+                      <div className="text-muted-foreground text-sm">
+                        Unleash Pure Speed, Feel Ultimate Thrill
+                      </div>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="/docs/installation">
+                      <div className="font-medium">Special Cars</div>
+                      <div className="text-muted-foreground text-sm">
+                        Experience Ultimate Luxury, Drive Pure Prestige
+                      </div>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Booking</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
+                    <NavigationMenuLink href="/components/button">
+                      <div className="font-medium">Rent</div>
+                      <div className="text-muted-foreground text-sm">
+                        Reserve Your Dream Ride in Seconds
+                      </div>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink href="/components/card">
+                      <div className="font-medium">Card</div>
+                      <div className="text-muted-foreground text-sm">
+                        Container for content sections
+                      </div>
+                    </NavigationMenuLink>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/components/card">Contact</NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1">
+        <div className="container mx-auto px-4 py-12">
+          <h1 className="text-4xl font-bold">Welcome to Our Platform</h1>
+          <p className="text-muted-foreground mt-4 text-lg">
+            Start building amazing experiences with our component library.
+          </p>
         </div>
       </main>
     </div>

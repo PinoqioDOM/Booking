@@ -74,13 +74,22 @@ const ModelInner = ({
   const cHov = useRef({ x: 0, y: 0 });
 
   const ext = useMemo(() => url.split('.').pop().toLowerCase(), [url]);
+
+  const gltf = useGLTF(url);
+  const fbx = useFBX(url);
+  const obj = useLoader(OBJLoader, url);
+
+  const gltfScene = ext === 'glb' || ext === 'gltf' ? gltf.scene : null;
+  const fbxScene = ext === 'fbx' ? fbx : null;
+  const objScene = ext === 'obj' ? obj : null;
+
   const content = useMemo(() => {
-    if (ext === 'glb' || ext === 'gltf') return useGLTF(url).scene.clone();
-    if (ext === 'fbx') return useFBX(url).clone();
-    if (ext === 'obj') return useLoader(OBJLoader, url).clone();
+    if (ext === 'glb' || ext === 'gltf') return gltfScene?.clone();
+    if (ext === 'fbx') return fbxScene?.clone();
+    if (ext === 'obj') return objScene?.clone();
     console.error('Unsupported format:', ext);
     return null;
-  }, [url, ext]);
+  }, [ext, gltfScene, fbxScene, objScene]);
 
   const pivotW = useRef(new THREE.Vector3());
   useLayoutEffect(() => {
@@ -352,7 +361,7 @@ const ModelViewer = ({
   onModelLoaded
 }) => {
   useEffect(() => void useGLTF.preload(url), [url]);
-  const pivot = useRef(new THREE.Vector3()).current;
+  const pivot = useMemo(() => new THREE.Vector3(), []);
   const contactRef = useRef(null);
   const rendererRef = useRef(null);
   const sceneRef = useRef(null);
